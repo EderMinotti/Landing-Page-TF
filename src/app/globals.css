@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  /* Preto / tons neutros */
+  --color-ink-50: #f7f7f7;
+  --color-ink-100: #ededed;
+  --color-ink-200: #dadada;
+  --color-ink-300: #bababa;
+  --color-ink-400: #929292;
+  --color-ink-500: #6f6f6f;
+  --color-ink-600: #545454;
+  --color-ink-700: #404040;
+  --color-ink-800: #262626;
+  --color-ink-900: #0a0a0a;
+  --color-ink-950: #000000;
+
+  /* Vermelho de destaque */
+  --color-accent-50: #fdf3f6;
+  --color-accent-100: #fbe3eb;
+  --color-accent-200: #f6bfd0;
+  --color-accent-300: #ee8bab;
+  --color-accent-400: #e05a86;
+  --color-accent-500: #ba1650;
+  --color-accent-600: #9a1244;
+  --color-accent-700: #7a1038;
+  --color-accent-800: #5f0e2c;
+  --color-accent-900: #470a21;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Alinha a âncora ao header fixo (h-16 = 4rem). */
+  scroll-padding-top: 4rem;
+  /* Impede o "font boosting"/auto-ajuste de texto dos navegadores mobile
+     (Chrome Android, WebView e Safari iOS), que aumenta a fonte e pode
+     estourar a largura da tela apenas em aparelhos reais. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-ink-900);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+}
+
+/* Botões mais responsivos ao toque no mobile (elimina o atraso de
+   duplo-toque/zoom e melhora a resposta do menu hambúrguer). */
+button {
+  touch-action: manipulation;
+}
+
+/* Mobile: trava a rolagem horizontal causada por qualquer conteúdo que
+   exceda a largura da tela. "clip" não cria um novo contêiner de rolagem,
+   preservando o header sticky. */
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Textura de blueprint (grade técnica) para a seção Home —
+   remete a desenho técnico de engenharia/construção. */
+.bg-blueprint {
+  background-color: var(--color-ink-900);
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgb(255 255 255 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.09) 1px, transparent 1px);
+  background-size: 16px 16px, 16px 16px, 96px 96px, 96px 96px;
+  background-position: center top;
+}
