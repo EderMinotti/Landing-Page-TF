@@ -226,7 +226,9 @@ export default function ContatoSection() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white text-accent-500 ring-1 ring-ink-100">
                     {info.icon}
                   </span>
-                  <div className="min-w-0 break-words">
+                  {/* wrap-anywhere e nao break-words: so o primeiro reduz o min-content,
+                      sem o qual o e-mail longo estoura a largura da tela no mobile. */}
+                  <div className="min-w-0 wrap-anywhere">
                     <p className="text-xs font-semibold uppercase tracking-wider text-ink-400">
                       {info.label}
                     </p>

@@ -51,7 +51,10 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Fecha com Esc e trava o scroll do body enquanto o menu está aberto.
+  // Fecha com Esc. A rolagem do fundo é travada pelo "touch-none" no backdrop
+  // (CSS), e não alterando body.style.overflow: como globals.css deixa o body
+  // com overflow-x: clip no mobile, mexer no overflow dele faz o navegador
+  // zerar a rolagem — a página pulava para o topo ao abrir o menu.
   useEffect(() => {
     if (!open) return;
 
@@ -60,13 +63,7 @@ export default function Header() {
     };
 
     document.addEventListener("keydown", onKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
   return (
@@ -161,11 +158,12 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Menu mobile */}
+        {/* Menu mobile — fixo na viewport, logo abaixo do header (h-16), para
+            não depender do contexto de posicionamento do header sticky. */}
         <div
           id="mobile-menu"
           className={cn(
-            "absolute inset-x-0 top-16 border-b border-ink-100 bg-white shadow-md transition-all duration-200 md:hidden",
+            "fixed inset-x-0 top-16 border-b border-ink-100 bg-white shadow-md transition-all duration-200 md:hidden",
             open
               ? "visible translate-y-0 opacity-100"
               : "invisible -translate-y-2 opacity-0",
@@ -193,13 +191,14 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Backdrop do menu mobile */}
+      {/* Backdrop do menu mobile. "touch-none" impede que o gesto de arrastar
+          sobre ele role a página por trás do menu. */}
       <div
         aria-hidden="true"
         onClick={() => setOpen(false)}
         className={cn(
           "fixed inset-0 z-40 bg-ink-950/50 transition-opacity duration-200 md:hidden",
-          open ? "opacity-100" : "pointer-events-none opacity-0",
+          open ? "touch-none opacity-100" : "pointer-events-none opacity-0",
         )}
       />
     </>

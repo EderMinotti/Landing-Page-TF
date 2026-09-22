@@ -90,7 +90,7 @@ const DIFERENCIAIS: Diferencial[] = [
 ];
 
 const TEXTO_INSTITUCIONAL =
-  "A JF Soluções Integradas é uma empresa de construção civil, instalação e manutenção industrial. Nossa equipe de profissionais altamente qualificados trabalha para garantir que seu projeto seja executado de maneira eficiente e dentro do orçamento. Entre em contato conosco para saber mais sobre nossos serviços.";
+  "A TF Soluções Integradas é uma empresa de construção civil, instalação e manutenção industrial. Nossa equipe de profissionais altamente qualificados trabalha para garantir que seu projeto seja executado de maneira eficiente e dentro do orçamento. Entre em contato conosco para saber mais sobre nossos serviços.";
 
 export default function QuemSomosSection() {
   return (
